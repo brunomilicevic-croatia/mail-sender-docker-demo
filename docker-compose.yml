@@ -1,0 +1,17 @@
+version: "3.9" 
+services:
+  mail-sender:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      MAIL_SERVER_HOST: mail-server
+    depends_on:
+      - mail-server
+  mail-server:
+    image: mailhog/mailhog
+    restart: always
+    ports:
+      - 1025:1025
+      - 8025:8025
